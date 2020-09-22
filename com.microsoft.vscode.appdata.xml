@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2014-2020 Free Software Foundation, Inc. -->
+<component type="desktop-application">
+ <id>com.microsoft.vscode.desktop</id>
+ <metadata_license>MIT</metadata_license>
+ <name>Visual Studio Code</name>
+ <summary>Visual Studio Code combines the simplicity of a code editor with what developers need for their core edit-build-debug cycle.</summary>
+ <description>
+  <p>Visual Studio Code is a distribution of the Code - OSS repository with Microsoft specific customizations released under a traditional Microsoft product license.
+
+Visual Studio Code combines the simplicity of a code editor with what developers need for their core edit-build-debug cycle. It provides comprehensive code editing, navigation, and understanding support along with lightweight debugging, a rich extensibility model, and lightweight integration with existing tools.
+
+Visual Studio Code is updated monthly with new features and bug fixes.</p>
+ </description>
+ <launchable type="desktop-id">vscode.desktop</launchable>
+ <screenshots>
+  <screenshot type="default">
+  <image type="source" width="2158" height="1620">https://user-images.githubusercontent.com/1487073/58344409-70473b80-7e0a-11e9-8570-b2efc6f8fa44.png</image>
+ </screenshot>
+ </screenshots>
+ <provides>
+     <binary>VSCode</binary>
+ </provides>
+ <releases>
+     <release version="1.49.1" date="2020-09-22">
+         <description>Initial AppImage release.</description>
+     </release>
+ </releases>
+ <url type="homepage">https://code.visualstudio.com</url>
+ <update_contact>dziltener_AT_lyrion.ch</update_contact>
+ <project_group>Atom</project_group>
+</component>
+

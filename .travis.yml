@@ -1,0 +1,46 @@
+language: node_js
+sudo: true
+
+before_install:
+- sudo apt-get update -qq
+
+install:
+- |
+  sudo apt-get install fuse appstream appstream-util
+
+before_script:
+- wget https://github.com/probonopd/linuxdeployqt/releases/download/7/linuxdeployqt-7-x86_64.AppImage; mv linuxdeployqt* linuxdeployqt; chmod +x linuxdeployqt
+- wget https://github.com/iteufel/nwjs-ffmpeg-prebuilt/releases/download/0.45.1/0.45.1-linux-x64.zip
+- wget https://go.microsoft.com/fwlink/?LinkID=620884 -O vscode.tar.gz
+# unpacking
+- tar xzf vscode.tar.gz
+- mv VSCode-linux-x64 vscode
+- unzip 0.45.1-linux-x64.zip
+
+script:
+- BUILD_SRC=$(pwd)
+- mkdir -p AppDir/usr
+- APPDIR="${BUILD_SRC}/AppDir"
+- mv vscode "${APPDIR}/usr/local"
+- mkdir -p "${APPDIR}/usr/share/pixmaps"
+- cp "${APPDIR}/usr/local/resources/app/resources/linux/code.png" "${APPDIR}"
+- mkdir -p "${APPDIR}/usr/share/applications"
+- cp vscode.desktop "${APPDIR}/usr/share/applications"
+- mkdir -p "${APPDIR}/usr/share/metainfo"
+- cp com.microsoft.vscode.appdata.xml "${APPDIR}/usr/share/metainfo"
+- cp libffmpeg.so "${APPDIR}/usr/libffmpeg.so"
+- mkdir -p "${APPDIR}/usr/bin"
+- cd "${APPDIR}/usr/bin"
+- ln -s ../local/bin/code VSCode
+- cd "${BUILD_SRC}"
+- find "${APPDIR}"
+- export ARCH=x86_64
+- |
+  ./linuxdeployqt "${APPDIR}/usr/share/applications/vscode.desktop" \
+  -updateinformation="gh-releases-zsync|zilti|VSCode.AppImage|continuous|VSCode-*.AppImage.zsync" \
+  -appimage
+  
+after_success:
+- wget https://github.com/probonopd/uploadtool/raw/master/upload.sh; chmod +x upload.sh
+- bash upload.sh ./*.AppImage*
+
