@@ -37,7 +37,7 @@ script:
 - export ARCH=x86_64
 - |
   ./linuxdeployqt "${APPDIR}/usr/share/applications/vscode.desktop" \
-  -updateinformation="gh-releases-zsync|zilti|VSCode.AppImage|continuous|VSCode-*.AppImage.zsync" \
+  -updateinformation="gh-releases-zsync|zilti|Visual_Studio_Code.AppImage|continuous|Visual_Studio_Code-*.AppImage.zsync" \
   -appimage
   
 after_success:
