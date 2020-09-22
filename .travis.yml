@@ -34,7 +34,6 @@ script:
 - cd "${APPDIR}/usr/bin"
 - ln -s ../local/code VSCode
 - cd "${BUILD_SRC}"
-- find "${APPDIR}"
 - export ARCH=x86_64
 - |
   ./linuxdeployqt "${APPDIR}/usr/share/applications/vscode.desktop" \
