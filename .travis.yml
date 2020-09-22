@@ -22,6 +22,7 @@ script:
 - mkdir -p AppDir/usr
 - APPDIR="${BUILD_SRC}/AppDir"
 - mv vscode "${APPDIR}/usr/local"
+- rm "${APPDIR}/usr/local/bin/code"
 - mkdir -p "${APPDIR}/usr/share/pixmaps"
 - cp "${APPDIR}/usr/local/resources/app/resources/linux/code.png" "${APPDIR}"
 - mkdir -p "${APPDIR}/usr/share/applications"
@@ -31,7 +32,7 @@ script:
 - cp libffmpeg.so "${APPDIR}/usr/libffmpeg.so"
 - mkdir -p "${APPDIR}/usr/bin"
 - cd "${APPDIR}/usr/bin"
-- ln -s ../local/bin/code VSCode
+- ln -s ../local/code VSCode
 - cd "${BUILD_SRC}"
 - find "${APPDIR}"
 - export ARCH=x86_64
